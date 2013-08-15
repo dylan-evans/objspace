@@ -70,4 +70,6 @@ typedef struct {
 #define LIST_TYPE    0x40
 #define LIST_ARRAY   0x41
 #define LIST_TUPLE   0x42
+#define LIST_LINKED  0x43
+#define LIST_QUEUE   0x44
 
