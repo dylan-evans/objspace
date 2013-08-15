@@ -24,7 +24,16 @@ int clean_suite_object()
 
 void test_object1()
 {
-    CU_ASSERT(TRUE);
+    char buf[] = "42";
+    Object *obj;
+
+    obj = object_string(buf);
+
+    CU_ASSERT(obj != NULL);
+
+    CU_ASSERT(obj->type == STRING_TYPE);
+
+    CU_ASSERT(((String*)obj)->ptr == buf);
 }
 
 
@@ -57,7 +66,7 @@ void test_num1()
 void test_num2()
 {
     int test_val;
-    Object *obj
+    Object *obj;
 
     test_val = 42;
 
@@ -68,6 +77,7 @@ void test_num2()
     CU_ASSERT(obj->type == NUMBER_INT);
 
     CU_ASSERT(((Number*)obj)->value.num_int == test_val);
+}
 
 int setup_object_tests()
 {

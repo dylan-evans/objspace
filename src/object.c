@@ -84,3 +84,27 @@ Object *object_int(int value)
     return (Object*)num;
 }
 
+Object *object_string(char *buffer)
+{
+    static Engine str_engine = {
+        .set = NULL,
+        .get = NULL,
+        .destroy = NULL,
+        .iter = NULL,
+        .next = NULL,
+        .lock = NULL,
+        .length = NULL,
+        .string = NULL
+    };
+    String *str;
+
+    str = malloc(sizeof(String));
+
+    str->object.type = STRING_TYPE;
+    str->object.size = sizeof(String);
+    str->object.engine = &str_engine;
+    str->object.container = NULL;
+    str->ptr = buffer;
+
+    return (Object*)str;
+}

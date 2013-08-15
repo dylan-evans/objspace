@@ -7,6 +7,7 @@ typedef struct _object Object;
 typedef struct _key Key;
 typedef struct _iter Iter;
 typedef struct _lock Lock;
+typedef struct _string String;
 
 typedef struct {
     int (*set)(Object *, Key *, Object *);
@@ -61,6 +62,10 @@ typedef struct {
 
 } Number;
 
+struct _string {
+    Object object;
+    char *ptr;
+};
 
 #define NUMBER_TYPE  0x10
 #define NUMBER_INT   0x11
@@ -76,7 +81,10 @@ typedef struct {
 #define LIST_LINKED  0x43
 #define LIST_QUEUE   0x44
 
+#define STRING_TYPE  0x81
+
 Object *object_float(double value);
 Object *object_int(int value);
+Object *object_string(char *buffer);
 
 #endif
