@@ -15,7 +15,7 @@ Lock *object_lock(Object *object, int timeout)
 
 Key *key_from_int(Object *object, int index)
 {
-    
+       
 }
 
 Number *number_create(int type)

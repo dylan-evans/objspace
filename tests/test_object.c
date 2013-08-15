@@ -40,8 +40,34 @@ int clean_suite_num()
 
 void test_num1()
 {
-    CU_ASSERT(TRUE);
+    double test_val;
+    Object *obj;
+
+    test_val = 4.2 / 7;
+
+    obj = object_float(test_val);
+
+    CU_ASSERT(obj != NULL);
+    
+    CU_ASSERT(obj->type == NUMBER_FLOAT);
+    
+    CU_ASSERT(((Number*)obj)->value.num_float == test_val);
 }
+
+void test_num2()
+{
+    int test_val;
+    Object *obj
+
+    test_val = 42;
+
+    obj = object_int(test_val);
+    
+    CU_ASSERT(obj != NULL);
+
+    CU_ASSERT(obj->type == NUMBER_INT);
+
+    CU_ASSERT(((Number*)obj)->value.num_int == test_val);
 
 int setup_object_tests()
 {

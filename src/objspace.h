@@ -1,3 +1,6 @@
+#ifndef _OBJSPACE_H
+#define _OBJSPACE_H
+
 #include <unistd.h>
 
 typedef struct _object Object;
@@ -73,3 +76,7 @@ typedef struct {
 #define LIST_LINKED  0x43
 #define LIST_QUEUE   0x44
 
+Object *object_float(double value);
+Object *object_int(int value);
+
+#endif
