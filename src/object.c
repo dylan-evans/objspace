@@ -62,7 +62,7 @@ Lock *obj_lock(Object *self, int timeout)
  */
 int obj_unlock(Lock *lock)
 {
-    if(lock->object->engine->unlock)
+    if(lock->object->engine->unlock == NULL)
         return 0;
     return lock->object->engine->unlock(lock);
 }
