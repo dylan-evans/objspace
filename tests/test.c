@@ -19,8 +19,8 @@ int main(int argc, char **argv)
     if(CUE_SUCCESS != CU_initialize_registry())
         return CU_get_error();
 
-    status = setup_object_tests();
-    if(!status)
+    if(!(status = setup_object_tests())
+        || !(status = setup_list_tests()))
     {
         CU_cleanup_registry();
         return CU_get_error();
