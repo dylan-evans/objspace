@@ -24,7 +24,7 @@ int clean_suite_list()
 
 void test_list1()
 {
-    int i, prev;
+    int i;
     List *list;
     Object *val;
     Key *key;
@@ -35,11 +35,11 @@ void test_list1()
 
     val = object_int(42);
     
-    for(i = 1, prev = 1; i < 1000000; i += prev)
+    for(i = 1; i < 1000000; i *= 2)
     {
         key = key_index(i);
         obj_set((Object*)list, key, val);
-        CU_ASSERT(list->length > i);
+        CU_ASSERT((list->length >= i));
     }
 
 }
