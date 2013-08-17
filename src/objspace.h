@@ -3,45 +3,9 @@
 
 #include <unistd.h>
 
-typedef struct _object Object;
-typedef struct _key Key;
-typedef struct _iter Iter;
-typedef struct _lock Lock;
+#include "object.h"
+
 typedef struct _string String;
-
-typedef struct {
-    int (*set)(Object *, Key *, Object *);
-    Object *(*get)(Object *, Key *);
-    int (*destroy)(Object *, Key *);
-    Iter *(*iter)(Object *);
-    Object *(*next)(Iter *);
-    Lock *(*lock)(Object *, int);
-    int (*length)(Object *);
-    char *(*string)(Object *);
-} Engine;
-
-/*
- * The Object is a base for any data.
- */
-struct _object {
-    int type, size;
-    Object *container;
-    Engine *engine;
-};
-
-struct _iter {
-    Object *object;
-    int index;
-};
-
-struct _lock {
-    int id;
-};
-
-struct _key {
-    char *str;
-    unsigned int index;
-};
 
 typedef struct {
     Object object;
@@ -50,7 +14,8 @@ typedef struct {
 
 typedef struct {
     Object object;
-
+    Object **array;
+    int length;
 } List;
 
 typedef struct {
@@ -83,8 +48,7 @@ struct _string {
 
 #define STRING_TYPE  0x81
 
-Object *object_float(double value);
-Object *object_int(int value);
-Object *object_string(char *buffer);
+Object *list_array_create();
+
 
 #endif
